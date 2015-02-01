@@ -7,7 +7,7 @@ elections2010Raw <- read.csv("Election2010.csv")
 seats2010<-elections2010Raw %>%
   select(Seat,Win10) %>%
   group_by(Win10) %>%
-  summarise(NumSeats=length(Win10)) %>%
+  summarise(NumSeats=n()) %>%
   rename(Party = Win10) %>%
   ungroup() %>%
   transform(Party = factor(Party,levels=Party[rank(-NumSeats)]))
