@@ -1,4 +1,5 @@
 library(dplyr)
+library(magrittr)
 library(ggplot2)
 library(tidyr)
 
@@ -37,6 +38,27 @@ elections2010Tidy<-elections2010Raw %>%
   gather(Party, VoteShare, c(Con10:UKIP10, con05:oth05)) %>%
   separate(Party,c("Party","Year"),sep=-3) %>%
   arrange(Seat)
+
+
+    
+
+consolidatePartyNames<-function(oldName){
+  newName<- switch(oldName,
+            con = "Con",
+            lab = "Lab",
+            ld = "LD",
+            snp = "SNP",
+            pc = "PC",
+            ukip = "UKIP",
+            grn = "Grn")
+  
+  if(length(newName)==0) {
+    return(oldName)
+  }
+  else {
+    return(newName)
+  }
+}
 
 
 
