@@ -34,7 +34,7 @@ p
 
 elections2010Tidy<-elections2010Raw %>%
   select(1:3,Win10 ,Con10:UKIP10) %>%
-  gather(Party, VoteShare, Con10:UKIP10, Votes, Convt10:UKIPvt10) %>%
+  gather(Party, VoteShare, Con10:UKIP10) %>%
   arrange(Seat)
 
 
