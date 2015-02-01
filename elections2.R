@@ -50,7 +50,9 @@ consolidatePartyNames<-function(oldName){
             snp = "SNP",
             pc = "PC",
             ukip = "UKIP",
-            grn = "Grn")
+            grn = "Grn",
+            bnp = "BNP",
+            oth = "Oth")
   
   if(length(newName)==0) {
     return(oldName)
@@ -59,6 +61,15 @@ consolidatePartyNames<-function(oldName){
     return(newName)
   }
 }
+
+elections2010Tidy %<>%
+          group_by(N=row_number()) %>%
+          mutate(Party1=consolidatePartyNames(Party)) %>%
+          ungroup() %>%
+          select(-N) %>%
+          select(-Party) %>%
+          rename(Party = Party1)
+
 
 
 
