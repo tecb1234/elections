@@ -70,6 +70,12 @@ elections2010Tidy %<>%
 
 
 
+change0510<-elections2010Tidy %>%
+            group_by(Seat,Party) %>%
+            summarise(change0510 = VoteShare[1]-VoteShare[2] )
+
+
+
 
 
 
