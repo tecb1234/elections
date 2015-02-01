@@ -63,10 +63,8 @@ consolidatePartyNames<-function(oldName){
 }
 
 elections2010Tidy %<>%
-          group_by(N=row_number()) %>%
+          rowwise() %>%
           mutate(Party1=consolidatePartyNames(Party)) %>%
-          ungroup() %>%
-          select(-N) %>%
           select(-Party) %>%
           rename(Party = Party1)
 
